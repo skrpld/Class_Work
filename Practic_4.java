@@ -33,6 +33,6 @@ public class Main {
             }
         }
 
-        Tree.add(1);
+//        Tree.add(1);
     }
 }
