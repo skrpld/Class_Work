@@ -65,10 +65,16 @@ class Calc {
         return result;
     }
     double Calc (double a, double b) {
+        if (a == b) {
+            System.out.println("ERROR: Operation is impossible")
+            return null;
         result = (a + b)/(a - b);
         return result;
     }
     double Calc (double x, double a, double b) {
+        if (b == 0) {
+            System.out.println("ERROR: Operation is impossible")
+            return null;
         result = a * x / b;
         return result;
     }
