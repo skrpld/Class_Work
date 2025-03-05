@@ -68,14 +68,20 @@ class Calc {
         if (a == b) {
             System.out.println("ERROR: Operation is impossible")
             return null;
-        result = (a + b)/(a - b);
-        return result;
+        }
+        else {
+            result = (a + b)/(a - b);
+            return result;
+        }
     }
     double Calc (double x, double a, double b) {
         if (b == 0) {
             System.out.println("ERROR: Operation is impossible")
             return null;
-        result = a * x / b;
-        return result;
+        }
+        else {
+            result = a * x / b;
+            return result;
+        }
     }
 }
