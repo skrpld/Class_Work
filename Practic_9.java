@@ -2,41 +2,41 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner();
-		
-		Student[] array = new Student{
-			Student("Steve", "2007", "NewYork", "+19999999999", "4", "Computer_Science"),
-			Student("John", "2014", "Moskow", "+29999999999", "4", "Computer_Science"),
-			Student("Bob", "2017", "Seatle", "+39999999999", "2", "Russian_Language"),
-		}
-		
+		Scanner scan = new Scanner(System.in);
+
+		Student[] array = {
+				new Student("Steve", "2007", "NewYork", "+19999999999", "4", "Computer_Science"),
+				new Student("John", "2014", "Moskow", "+29999999999", "4", "Computer_Science"),
+				new Student("Bob", "2017", "Seatle", "+39999999999", "2", "Russian_Language"),
+		};
+
 		System.out.println("Names of all students:");
-		for (student : array) {
+		for (Student student : array) {
 			System.out.printf("%s\n", student.getName());
 		}
-		
+
 		System.out.print("Enter faculty: ");
-		String faculty = scan.Next();
+		String faculty = scan.next();
 		studentByFaculty(array, faculty);
-		
+
 		System.out.print("Enter year: ");
-		String year = scan.Next();
+		String year = scan.next();
 		studentAfterYear(array, year);
 	}
-	
-	void studentByFaculty (Student[] students, String faculty) {
+
+	static void studentByFaculty (Student[] students, String faculty) {
 		System.out.printf("\nStudents from faculty of %s:", faculty);
-		for (student : students) {
-			if (faculty == student.faculty) {
+		for (Student student : students) {
+			if (faculty == student.getFaculty()) {
 				System.out.printf("| %s | %s | %s |\n", student.getName(), student.getFaculty(), student.getAdress());
 			}
 		}
 	}
-	
-	void studentAfterYear (Student[] students, String year) {
+
+	static void studentAfterYear (Student[] students, String year) {
 		System.out.printf("\nStudents who enter after %s year:", year);
-		for (student : students) {
-			if (year > student.enterDate) {
+		for (Student student : students) {
+			if (year > student.getEnterDate()) {
 				System.out.printf("| %s | %s | %s |\n", student.getName(), student.getFaculty(), student.getAdress());
 			}
 		}
@@ -71,17 +71,17 @@ class Student {
 	void setCourse(String course) {
 		this.course = course;
 	}
-	
+
 	String getName() {
 		return this.name;
 	}
 	String getAdress() {
 		return this.adress;
 	}
-	String getPhone() {
-		return this.phone;
-	}
 	String getFaculty() {
 		return this.faculty;
+	}
+	String getEnterDate() {
+		return this.enterDate;
 	}
 }
