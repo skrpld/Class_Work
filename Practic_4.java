@@ -17,10 +17,10 @@ public class Main {
     public static void Sort(int[] arr) {
         int interval = arr.length;
         boolean swap;
-        final double SHRINK_FACTOR = 1.3;
+        final double shrink = 1.247;
 
         do {
-            interval = (int)(interval / SHRINK_FACTOR);
+            interval = (int)(interval / shrink);
             if (interval < 1) { interval = 1;}
 
             swap = false;
