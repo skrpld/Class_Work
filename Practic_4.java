@@ -1,74 +1,46 @@
 public class Main {
     public static void main(String[] args) {
-        Tree tree = new Tree();
+        int[][] matrix = {
+                {5, 3, 8, 4, 2},
+                {9, 1, 7, 6, 0},
+                {4, 2, 5, 8, 3}
+        };
 
-        int[][] array = {
-                {3, 7, 1, 9, 44}};
-        String[] resultString = new String[5]; //длина не меньше длины самого длинного вложеного массива
+        for (int[] row : matrix) {
+            Sort(row);
+        }
 
-        for (int[] j : array) {
-            for (int i : j) {
-                tree.add(i);
+        System.out.println("\nОтсортированный массив:");
+        output(matrix);
+    }
+
+    public static void Sort(int[] arr) {
+        int interval = arr.length;
+        boolean swap;
+        final double SHRINK_FACTOR = 1.3;
+
+        do {
+            interval = (int)(interval / SHRINK_FACTOR);
+            if (interval < 1) { interval = 1;}
+
+            swap = false;
+            for (int i = 0; i + interval < arr.length; i++) {
+                if (arr[i] > arr[i + interval]) {
+                    int temp = arr[i];
+                    arr[i] = arr[i + interval];
+                    arr[i + interval] = temp;
+                    swap = true;
+                }
             }
-            resultString = tree.output().split(" ");
-            for (int i = 0; i < j.length; i++) {
-                j[i] = Integer.parseInt(resultString[i]);
+        } while (interval > 1 || swap);
+    }
+
+    public static void output(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
             }
+            System.out.println();
         }
-
-        for (int[] j : array) {
-            System.out.print("| ");
-            for (int i : j) {
-                System.out.print(i + " | ");
-            }
-        }
-
-        tree.output();
-    }
-}
-class Tree {
-    private static class Node {
-        int data;
-        Node left;
-        Node right;
-        Node(int data) {
-            this.data = data;
-        }
-    }
-    private Node root;
-
-    public void add(int data) {
-        root = recAdd(root, data);
-    }
-
-    private Node recAdd(Node current, int data) {
-        if (current == null) {
-            return new Node(data);
-        }
-        if (data < current.data) {
-            current.left = recAdd(current.left, data);
-        }
-        else if (data > current.data) {
-            current.right = recAdd(current.right, data);
-        }
-        else {
-            return current;
-        }
-        return current;
-    }
-
-    String result = null;
-    public String output() {
-        result = output(root, result);
-        return result;
-    }
-    private String output(Node node, String result) {
-        if (node != null) {
-            output(node.left, result);
-            result += (node.data + " ");
-            output(node.right, result);
-
-        }
-        return result;
     }
 }
