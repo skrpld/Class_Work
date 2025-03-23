@@ -105,7 +105,7 @@ class UserProduct implements Product, User {
 
     // Вывод
     public void printPurchaseInfo() {
-        System.out.printf("%s купил %s за %.2f ₽\n", login, name, price);
+        System.out.printf("%s bought %s for %.2f ₽\n", login, name, price);
     }
 }
 
