@@ -10,7 +10,7 @@ public class Main {
         System.out.print("Input string: ");
         String text = scanner.nextLine();
 
-        Pattern pattern = Pattern.compile("((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)");
+        Pattern pattern = Pattern.compile("(\\s+(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)");
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
