@@ -20,9 +20,9 @@ public class Main {
 
             while ((line = bReader.readLine()) != null) {
                 if (line.contains("//") && !inComment) {
-                    Matcher matcher = pattern.matcher(line.substring(0, line.indexOf("//")));
+                    Matcher matcher = pattern.matcher(line = line.substring(0, line.indexOf("//")));
                     if (matcher.find()) {
-                        writer.write(line.substring(0, line.indexOf("//")) + "\n");
+                        writer.write(line + "\n");
                     }
                 }
                 else if (line.contains("/*")) {
