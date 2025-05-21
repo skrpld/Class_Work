@@ -16,31 +16,39 @@ public class Main {
             String line;
             boolean inComment = false;
 
-            Pattern pattern = Pattern.compile("\\w");
+            Pattern pattern1 = Pattern.compile("\\w");
+            Pattern pattern2 = Pattern.compile("(?<!\")//.*$");
+            Pattern pattern3 = Pattern.compile("(?<!\")/\\*.*$|(?<!\")\\*/\\s*");
+
+            Matcher matcher1;
+            Matcher matcher2;
+            Matcher matcher3;
 
             while ((line = bReader.readLine()) != null) {
-                if (line.contains("//") && !inComment) {
-                    Matcher matcher = pattern.matcher(line = line.substring(0, line.indexOf("//")));
-                    if (matcher.find()) {
+                if (!inComment) {
+                    if ((matcher2 = pattern2.matcher(line)).find()) {
+                        matcher1 = pattern1.matcher(line = line.substring(0, matcher2.start()));
+                        if (matcher1.find()) {
+                            writer.write(line + "\n");
+                        }
+                    }
+                    else if ((matcher3 = pattern3.matcher(line)).find()) {
+                        matcher1 = pattern1.matcher(line = line.substring(0, matcher3.start()));
+                        if (matcher1.find()) {
+                            writer.write(line + "\n");
+                        }
+                        inComment = true;
+                    }
+                    else {
                         writer.write(line + "\n");
                     }
                 }
-                else if (line.contains("/*")) {
-                    Matcher matcher = pattern.matcher(line = line.substring(0, line.indexOf("/*")));
-                    if (matcher.find()) {
-                        writer.write(line + "\n");
-                    }
-                    inComment = true;
-                }
-                else if (line.contains("*/")) {
-                    Matcher matcher = pattern.matcher(line = line.substring(line.indexOf("*/")));
-                    if (matcher.find()) {
+                else if ((matcher3 = pattern3.matcher(line)).find()) {
+                    matcher1 = pattern1.matcher(line = line.substring(matcher3.end()));
+                    if (matcher1.find()) {
                         writer.write(line + "\n");
                     }
                     inComment = false;
-                }
-                else if (!inComment) {
-                    writer.write(line + "\n");
                 }
             }
         }
