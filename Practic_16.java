@@ -26,9 +26,17 @@ public class Main {
                     }
                 }
                 else if (line.contains("/*")) {
+                    Matcher matcher = pattern.matcher(line = line.substring(0, line.indexOf("//")));
+                    if (matcher.find()) {
+                        writer.write(line + "\n");
+                    }
                     inComment = true;
                 }
                 else if (line.contains("*/")) {
+                    Matcher matcher = pattern.matcher(line = line.substring(0, line.indexOf("//")));
+                    if (matcher.find()) {
+                        writer.write(line + "\n");
+                    }
                     inComment = false;
                 }
                 else if (!inComment) {
