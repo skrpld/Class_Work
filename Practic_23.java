@@ -72,7 +72,7 @@ class Group implements Subject {
 //===================================================================================================
 class User implements Observer {
     private final String username;
-    private final Map<String, List<String>> notifications = new HashMap<>(); // Группа -> Список сообщений
+    private final Map<String, List<String>> notifications = new HashMap<>();
 
     public User(String username) {
         this.username = username;
